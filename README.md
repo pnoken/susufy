@@ -1,245 +1,224 @@
-# 🚩 Challenge 1: 🥩 Decentralized Staking App
 
-![readme-1](https://github.com/scaffold-eth/se-2-challenges/assets/80153681/a620999a-a1ff-462d-9ae3-5b49ab0e023a)
+Pitch Deck Outline
+Objective: To develop a pitch deck for team Susufy to pitch a solution to solve a problem facing Absa Bank and its customers 
+Outcome: Win $10,000 at AbsaHacks
+Audience: Absa Bank 
 
-🦸 A superpower of Ethereum is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. If the users cooperate, the money is collected in a second smart contract. If they defect, the worst that can happen is everyone gets their money back. The users only have to trust the code.
 
-🏦 Build a `Staker.sol` contract that collects **ETH** from numerous addresses using a payable `stake()` function and keeps track of `balances`. After some `deadline` if it has at least some `threshold` of ETH, it sends it to an `ExampleExternalContract` and triggers the `complete()` action sending the full balance. If not enough **ETH** is collected, allow users to `withdraw()`.
+Team Name
+Susufy
 
-🎛 Building the frontend to display the information and UI is just as important as writing the contract. The goal is to deploy the contract and the app to allow anyone to stake using your app. Use a `Stake(address,uint256)` event to list all stakes.
 
-🌟 The final deliverable is deploying a Dapp that lets users send ether to a contract and stake if the conditions are met, then `yarn vercel` your app to a public webserver. Submit the url on [SpeedRunEthereum.com](https://speedrunethereum.com)!
+Problem
+Did you know that SMEs represent about 85% of businesses in Ghana 
 
-> 💬 Meet other builders working on this challenge and get help in the [Challenge 1 Telegram](https://t.me/joinchat/E6r91UFt4oMJlt01)!
+…and contribute about 70% to Ghana's GDP?
 
----
+For such a contribution, it’s not surprising that SMEs play a significant role in Ghana’s economy 
 
-## Checkpoint 0: 📦 Environment 📚
+And Absa recognizes that.
 
-Before you begin, you need to install the following tools:
+In fact, Absa views SMEs as a viable business opportunity for disbursing loans!
 
-- [Node (v18 LTS)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+Yet the bank faces a number of challenges in dealing with this segment:
 
-Then download the challenge to your computer and install dependencies by running:
+One, SMEs are usually a high risk group to lend to because they usually do not have collateral, do not manage their finances effectively, making it difficult to assess their credit worthiness. 
 
-```sh
-git clone https://github.com/scaffold-eth/se-2-challenges.git challenge-1-decentralized-staking
-cd challenge-1-decentralized-staking
-git checkout challenge-1-decentralized-staking
-yarn install
-```
+Second, SMEs shy away from dealing with banks like Absa due to the long application processes and requirements for accessing loans. 
 
-> in the same terminal, start your local network (a blockchain emulator in your computer):
+In effect, Absa misses the opportunity to collect deposits from this critical market and the opportunity to make a sustainable impact in Ghana.
 
-```sh
-yarn chain
-```
+Problem: SMEs find it difficult to save and raising funds for their businesses. 
+How can we open up fund access to SMEs and encourage them to save more?
+How can we overcome barriers and enhance inclusivity to improve SMEs' access to financial opportunities through banks?
 
-> in a second terminal window, 🛰 deploy your contract (locally):
+Improving Access to Financial Opportunities for SMEs through Banks: Overcoming Barriers and Enhancing Inclusivity
 
-```sh
-cd challenge-1-decentralized-staking
-yarn deploy
-```
 
-> in a third terminal window, start your 📱 frontend:
+Solution
+To solve this, we asked ourselves two questions: 
+How to encourage SMEs to save and to increase their access to funds?
+How can Absa increase deposit collection from SMEs in Ghana?
+And how can we make Absa an attractive option for SMEs as a growth partner?
 
-```sh
-cd challenge-1-decentralized-staking
-yarn start
-```
 
-📱 Open http://localhost:3000 to see the app.
+That’s when we created Susufy.
 
-> 👩‍💻 Rerun `yarn deploy` whenever you want to deploy new contracts to the frontend. If you haven't made any contract changes, you can run `yarn deploy --reset` for a completely fresh deploy.
+3 ways to solve this problem
+Collective Savings
+Investment
+Target saving and swipe /save
 
-🔏 Now you are ready to edit your smart contract `Staker.sol` in `packages/hardhat/contracts`
+Susufy addresses the challenge by enabling communities to provide monthly financial support to their members using a rotating, crowd-funded model. This approach fosters financial inclusion, strengthens social bonds, and empowers communities to meet their financial goals and needs effectively.
+Susufy leverages a blockchain-based rotating, crowd-funded model to enable communities to provide monthly financial support to their members. This blockchain-powered approach fosters financial inclusion, strengthens social bonds, and empowers communities to meet their financial goals and needs effectively, all while ensuring security and transparency.
+Susufy is a web application that allows SMEs to get quick access to funds to grow their businesses by joining a group of like-minded SMEs who pool funds to invest in each others’ business.
 
----
+Susufy provides SMEs with:
+Quick access to funds
+Secure investment for the future
 
-## Checkpoint 1: 🥩 Staking 💵
+Susufy provides Absa with:
+Quick access to deposits 
+Low-risk clients for loan disbursement 
 
-You'll need to track individual `balances` using a mapping:
 
-```solidity
-mapping ( address => uint256 ) public balances;
-```
 
-And also track a constant `threshold` at `1 ether`
 
-```solidity
-uint256 public constant threshold = 1 ether;
-```
+How it Works (Product Demo)
+So how does it work?
+Take Abena - Abena is a fabric retailer in East Legon 
+She hears about Susufy and decides to get on board 
 
-> 👩‍💻 Write your `stake()` function and test it with the `Debug Contracts` tab in the frontend.
+Step 1: Abena is asked to come with 4 other business owners she trusts to simply open a group account with 0 funds
+Step 2: Absa creates accounts for all 5 businesses and signs them up to Susufy
+Step 3: The Susufy App randomly generates numbers for each business to determine the order in which they would each receive funds
+Step 4: The App notifies all business owners of the period to make contributions
+Step 5: All businesses make the contributions and the App splits the cash 50-50% and sends the pooled funds to the first person
 
-![debugContracts](https://github.com/scaffold-eth/se-2-challenges/assets/55535804/1a888e31-a79b-49ef-9848-357c5cee445a)
+Now let’s take a look at the Susufy Dashboard 
 
-> 💸 Need more funds from the faucet? Click on _"Grab funds from faucet"_, or use the Faucet feature at the bottom left of the page to get as much as you need!
 
-![Faucet](https://github.com/scaffold-eth/se-2-challenges/assets/55535804/e82e3100-20fb-4886-a6bf-4113c3729f53)
 
-> ✏ Need to troubleshoot your code? If you import `hardhat/console.sol` to your contract, you can call `console.log()` right in your Solidity code. The output will appear in your `yarn chain` terminal.
 
-### 🥅 Goals
 
-- [ ] Do you see the balance of the `Staker` contract go up when you `stake()`?
-- [ ] Is your `balance` correctly tracked?
-- [ ] Do you see the events in the `Stake Events` tab?
 
-  ![allStakings](https://github.com/scaffold-eth/se-2-challenges/assets/55535804/80bcc843-034c-4547-8535-129ed494a204)
 
----
 
-## Checkpoint 2: 🔬 State Machine / Timing ⏱
 
-### State Machine
 
-> ⚙️ Think of your smart contract like a _state machine_. First, there is a **stake** period. Then, if you have gathered the `threshold` worth of ETH, there is a **success** state. Or, we go into a **withdraw** state to let users withdraw their funds.
 
-Set a `deadline` of `block.timestamp + 30 seconds`
 
-```solidity
-uint256 public deadline = block.timestamp + 30 seconds;
-```
 
-👨‍🏫 Smart contracts can't execute automatically, you always need to have a transaction execute to change state. Because of this, you will need to have an `execute()` function that _anyone_ can call, just once, after the `deadline` has expired.
 
-> 👩‍💻 Write your `execute()` function and test it with the `Debug Contracts` tab
 
-> Check the `ExampleExternalContract.sol` for the bool you can use to test if it has been completed or not. But do not edit the `ExampleExternalContract.sol` as it can slow the auto grading.
 
-If the `address(this).balance` of the contract is over the `threshold` by the `deadline`, you will want to call: `exampleExternalContract.complete{value: address(this).balance}()`
 
-If the balance is less than the `threshold`, you want to set a `openForWithdraw` bool to `true` which will allow users to `withdraw()` their funds.
 
-### Timing
 
-You'll have 30 seconds after deploying until the deadline is reached, you can adjust this in the contract.
+Market Validation  
+What is the market saying?
 
-> 👩‍💻 Create a `timeLeft()` function including `public view returns (uint256)` that returns how much time is left.
 
-⚠️ Be careful! If `block.timestamp >= deadline` you want to `return 0;`
 
-⏳ _"Time Left"_ will only update if a transaction occurs. You can see the time update by getting funds from the faucet button in navbar just to trigger a new block.
 
-![stakerUI](https://github.com/scaffold-eth/se-2-challenges/assets/55535804/7d85badb-3ea3-4f3c-b5f8-43d5b64f6714)
 
-> 👩‍💻 You can call `yarn deploy --reset` any time you want a fresh contract, it will get re-deployed even if there are no changes on it.  
-> You may need it when you want to reload the _"Time Left"_ of your tests.
 
-Your `Staker UI` tab should be almost done and working at this point.
 
----
 
-### 🥅 Goals
+Why some business owners would join:
+Use the cash to grow business
+It’s a nice idea - another way of saving - helps the business solve a problem
+Makes you get working capital quick
+Would do it but it depends on the level of trust he has
+Because I need working capital for my business
+If I am in need of money urgently I would call on it .It’s part of savings to save more. 
+The need to expand the business 
+Depends on rules - When in need of money to invest in the business 
+If I am in need of money for my business to grow and I can get it 
 
-- [ ] Can you see `timeLeft` counting down in the `Staker UI` tab when you trigger a transaction with the faucet button?
-- [ ] If enough ETH is staked by the deadline, does your `execute()` function correctly call `complete()` and stake the ETH?
-- [ ] If the threshold isn't met by the deadline, are you able to `withdraw()` your funds?
 
----
 
-## Checkpoint 3: 💵 Receive Function / UX 🙎
+What would motivate me to join:
+As long as it’s safe and can help me access funds quickly
+When the bank takes responsibility for loss of fund 
+Will need the trust and assurance that my money is safe and receive my cash without complain 
+Make sure everyone pays - Everyone must pay their part
+It should be simple and convenient - fast App
+If only it’s real - they are not in for your money
 
-🎀 To improve the user experience, set your contract up so it accepts ETH sent to it and calls `stake()`. You will use what is called the `receive()` function.
+Why some business owners would not join:
+Some have bad intentions
+Someone ran away with her money!
 
-> Use the [receive()](https://docs.soliditylang.org/en/v0.8.9/contracts.html?highlight=receive#receive-ether-function) function in solidity to "catch" ETH sent to the contract and call `stake()` to update `balances`.
 
----
 
-### 🥅 Goals
 
-- [ ] If you send ETH directly to the contract address does it update your `balance` and the `balance` of the contract?
 
----
 
-### ⚔️ Side Quests
 
-- [ ] Can `execute()` get called more than once, and is that okay?
-- [ ] Can you stake and withdraw freely after the `deadline`, and is that okay?
-- [ ] What are other implications of _anyone_ being able to withdraw for someone?
 
----
 
-### 🐸 It's a trap!
 
-- [ ] Make sure funds can't get trapped in the contract! **Try sending funds after you have executed! What happens?**
-- [ ] Try to create a [modifier](https://solidity-by-example.org/function-modifier/) called `notCompleted`. It will check that `ExampleExternalContract` is not completed yet. Use it to protect your `execute` and `withdraw` functions.
 
-### ⚠️ Test it!
 
-- Now is a good time to run `yarn test` to run the automated testing function. It will test that you hit the core checkpoints. You are looking for all green checkmarks and passing tests!
+Retrospective
+Having gone through this 3-day program, these are our key takeaways:
 
----
+Learnt about the use of smart contracts and how to implement them in business 
+We go an overview of Hardhat and tried our hands on it
+We’ve also learnt about ourselves and how to pivot quickly in prototyping
 
-## Checkpoint 4: 💾 Deploy your contract! 🛰
+ 
 
-📡 Edit the `defaultNetwork` to [your choice of public EVM networks](https://ethereum.org/en/developers/docs/networks/) in `packages/hardhat/hardhat.config.ts`
 
-🔐 You will need to generate a **deployer address** using `yarn generate` This creates a mnemonic and saves it locally.
+Looking Forward
+@Roy can we have a timeline for what is below:
 
-👩‍🚀 Use `yarn account` to view your deployer account balances.
+Review our current solution (with Absa) - By Nov 2023
+Conduct additional market research - By Jan 2024
+Develop version 2.0 - By Feb 2024
+Pilot version 2.0 - By Mar 2024
+Sell final version - By Jun 2024
+  
+In the long term, we hope to implement smart contracts in our respective areas of interest (agri-tech, edutech, logistics, fintech, etc.)
 
-⛽️ You will need to send ETH to your deployer address with your wallet, or get it from a public faucet of your chosen network.
+Team
+Roy Mohubu
+Role: 
 
-> 📝 If you plan on submitting this challenge, be sure to set your `deadline` to at least `block.timestamp + 72 hours`
+Miranda Anya
+Role: 
 
-🚀 Run `yarn deploy` to deploy your smart contract to a public network (selected in `hardhat.config.ts`)
+Peter Nortey
+Role:
 
-> 💬 Hint: You can set the `defaultNetwork` in `hardhat.config.ts` to `sepolia` **OR** you can `yarn deploy --network sepolia`.
 
-![allStakings-blockFrom](https://github.com/scaffold-eth/se-2-challenges/assets/55535804/04725dc8-4a8d-4089-ba82-90f9b94bfbda)
 
-> 💬 Hint: For faster loading of your _"Stake Events"_ page, consider updating the `fromBlock` passed to `useScaffoldEventHistory` in [`packages/nextjs/pages/stakings.tsx`](https://github.com/scaffold-eth/se-2-challenges/blob/challenge-1-decentralized-staking/packages/nextjs/pages/stakings.tsx) to `blocknumber - 10` at which your contract was deployed. Example: `fromBlock: 3750241n` (where `n` represents its a [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)). To find this blocknumber, search your contract's address on Etherscan and find the `Contract Creation` transaction line.
+Francis Okunade
+Role:
 
----
+Obehi Omo-Ataga
+Role:
 
-## Checkpoint 5: 🚢 Ship your frontend! 🚁
+Regina 
+Role: 
 
-✏️ Edit your frontend config in `packages/nextjs/scaffold.config.ts` to change the `targetNetwork` to `chains.sepolia` or any other public network.
 
-💻 View your frontend at http://localhost:3000/stakerUI and verify you see the correct network.
+References:
+https://intracen.org/file/smecompetitivenessinghana2016finalagilowrespdf#:~:text=Small%20and%20medium%2Dsized%20enterprises%20(SMEs)%20are%20the%20backbone,gross%20domestic%20product%20(GDP).
 
-📡 When you are ready to ship the frontend app...
+https://www.worldbank.org/en/country/ghana/publication/ghana-economic-update-agriculture-ghana-s-engine-of-growth-for-jobs-creation
 
-📦 Run `yarn vercel` to package up your frontend and deploy.
 
-> Follow the steps to deploy to Vercel. Once you log in (email, github, etc), the default options should work. It'll give you a public URL.
 
-> If you want to redeploy to the same production URL you can run `yarn vercel --prod`. If you omit the `--prod` flag it will deploy it to a preview/test URL.
 
-> 🦊 Since we have deployed to a public testnet, you will now need to connect using a wallet you own or use a burner wallet. By default 🔥 `burner wallets` are only available on `hardhat` . You can enable them on every chain by setting `onlyLocalBurnerWallet: false` in your frontend config (`scaffold.config.ts` in `packages/nextjs/`)
 
-#### Configuration of Third-Party Services for Production-Grade Apps.
 
-By default, 🏗 Scaffold-ETH 2 provides predefined API keys for popular services such as Alchemy and Etherscan. This allows you to begin developing and testing your applications more easily, avoiding the need to register for these services.  
-This is great to complete your **SpeedRunEthereum**.
 
-For production-grade applications, it's recommended to obtain your own API keys (to prevent rate limiting issues). You can configure these at:
 
-- 🔷`ALCHEMY_API_KEY` variable in `packages/hardhat/.env` and `packages/nextjs/.env.local`. You can create API keys from the [Alchemy dashboard](https://dashboard.alchemy.com/).
 
-- 📃`ETHERSCAN_API_KEY` variable in `packages/hardhat/.env` with your generated API key. You can get your key [here](https://etherscan.io/myapikey).
 
-> 💬 Hint: It's recommended to store env's for nextjs in Vercel/system env config for live apps and use .env.local for local testing.
+Appendix
 
----
 
-## Checkpoint 6: 📜 Contract Verification
+Team Name: 
+Susufy
 
-Run the `yarn verify --network your_network` command to verify your contracts on etherscan 🛰
+Team Members
+Roy Mohubu
+Miranda Anya
+Peter Nortey
+Francis Okunade
+Obehi Omo-Ataga
 
-👉 Search this address on Etherscan to get the URL you submit to 🏃‍♀️[SpeedRunEthereum.com](https://speedrunethereum.com).
+Team Lead
+Obehi Omo-Ataga
 
----
+Problem Statement
+SMEs face two key problems: limited loan eligibility and a cumbersome loan application process. This hinders their access to much-needed funds for growth and discourages them from pursuing financial assistance.
 
-> 🏃 Head to your next challenge [here](https://speedrunethereum.com).
+Value Proposition:
+Absa Susu empowers SMEs to access quick and bigger loans through the power of group savings. Our solution provides a community of like-minded individuals who pool their resources to create a shared savings account. By contributing to this account, SMEs can access the funds they need for growth and expansion without the burden of loan eligibility or a complex loan application process. 
 
-> 💬 Problems, questions, comments on the stack? Post them to the [🏗 scaffold-eth developers chat](https://t.me/joinchat/F7nCRK3kI93PoCOk)
-#   s u s u f y  
- #   s u s u f y  
- #   s u s u f y  
- 
+USP:
+Our unique selling proposition is that we provide SMEs with a simple and effective way to access financial assistance through the power of community. By leveraging the concept of group savings, we enable SMEs to access quick and bigger loans while fostering a sense of community and collaboration. Our solution promotes financial inclusion, empowering SMEs to achieve their goals and drive economic growth.
