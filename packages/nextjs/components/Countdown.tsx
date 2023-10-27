@@ -36,32 +36,35 @@ export const Countdown = () => {
     const remainingSeconds = timeLeft % 60;
 
     return (
-        <section className="mx-auto p-12">
+        <section className="mx-auto p-12 bg-white rounded-box">
 
             <div className="grid grid-flow-col gap-2 md:gap-5 text-center auto-cols-max">
-                <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <div className="flex flex-col p-2 bg-red-600 rounded-box text-neutral-content">
                     <span className="countdown font-mono text-5xl">
                         <span style={{ "--value": days }}></span>
                     </span>
-                    days
+                    Days
                 </div>
-                <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <div className="text-6xl text-red-600 text-center">:</div>
+                <div className="flex flex-col p-2 bg-red-600 rounded-box text-neutral-content">
                     <span className="countdown font-mono text-5xl">
                         <span style={{ "--value": hours }}></span>
                     </span>
-                    hours
+                    Hours
                 </div>
-                <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <div className="text-6xl text-red-600 text-center">:</div>
+                <div className="flex flex-col p-2 bg-red-600 rounded-box text-neutral-content">
                     <span className="countdown font-mono text-5xl">
                         <span style={{ "--value": minutes }}></span>
                     </span>
-                    min
+                    Minutes
                 </div>
-                <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+                <div className="text-6xl text-red-600 text-center">:</div>
+                <div className="flex flex-col p-2 bg-red-600 rounded-box text-neutral-content">
                     <span className="countdown font-mono text-5xl">
                         <span style={{ "--value": remainingSeconds }}></span>
                     </span>
-                    sec
+                    Seconds
                 </div>
             </div>
         </section>

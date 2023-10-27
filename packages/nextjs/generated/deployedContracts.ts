@@ -246,7 +246,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0x79A43B5c00D63152881dEc462628DdfA658EA64F",
+          address: "0x220b849b21aE92dcA07a8a74fb156019b9a8970D",
           abi: [
             {
               inputs: [

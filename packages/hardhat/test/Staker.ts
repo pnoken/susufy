@@ -11,7 +11,7 @@ import { ethers, network } from "hardhat";
 import { use, expect } from "chai";
 import { Contract } from "ethers";
 
-describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
+describe("Staking App", function () {
   this.timeout(120000);
 
   let exampleExternalContract: Contract;

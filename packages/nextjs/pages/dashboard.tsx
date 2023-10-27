@@ -29,10 +29,7 @@ const StakerUI: NextPage = () => {
                             <h3 className="text-gray-300">History</h3>
                             <h3 className={`${activeTab === "contributions" ? 'bg-red-600 text-white' : 'text-gray-300'}  p-4 cursor-pointer`} onClick={() => handleTabClick('contributions')}>Contributions</h3>
                             <h3 className="p-4">Collections</h3>
-                            <div className="divider"></div>
-                            <h3 className="text-gray-300">History</h3>
-                            <h3 className="p-4">Contributions</h3>
-                            <h3 className="p-4">Collections</h3>
+
 
                         </div>
                     </div>

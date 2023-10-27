@@ -12,6 +12,7 @@ import {
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
 import Stakings from "~~/components/Transactions";
 import { Countdown } from "../Countdown";
+import { SearchBar } from "../blockexplorer";
 
 export const StakeContractInteraction = ({ address, activeTab, handleTabClick }: { address?: string }) => {
   const { address: connectedAddress } = useAccount();
@@ -49,7 +50,7 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
   const { writeAsync: stakeETH } = useScaffoldContractWrite({
     contractName: "Staker",
     functionName: "stake",
-    value: "0.5",
+    value: "0.02",
   });
   const { writeAsync: execute } = useScaffoldContractWrite({
     contractName: "Staker",
@@ -58,6 +59,7 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
   const { writeAsync: withdrawETH } = useScaffoldContractWrite({
     contractName: "Staker",
     functionName: "withdraw",
+    args: [myStake],
   });
 
   return (
@@ -122,51 +124,18 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
         <div className="md:w-5/6 w-full bg-gray-300">
           <div className="grid card">
             <div className="bg-red-700 relative text-white rounded-b-lg p-6 h-80 flex gap-5 flex justify-end bg-cover bg-no-repeat" style={{ backgroundImage: 'url(/images/graphic-side.png)' }}>
-              <div className="flex gap-5">
-                <button className="btn glass text-2xl" onClick={() => stakeETH()}>Deposit</button>
-                <button className="btn glass text-2xl text-white" onClick={() => withdrawETH()}>Withdraw</button>
-              </div>
-            </div>
-            <div className="grid card p-2 m-4 mt-60 absolute buttom-0">
-              <div className="gap-4 text-gray-300 flex flex-row mx-auto">
-
-                <div className="card bg-white gap-4 m-4 rounded-box p-4">
-                  <div className="flex-row flex justify-between items-center">
-                    <h2> Total <br /> Contributions</h2>
-                    <h2 className="text-xl text-red-500"><ETHToPrice value={stakerContractBalance != null ? stakerContractBalance.toString() : undefined} /></h2>
-                  </div>
-                  <progress className="progress w-56" value="40" max="100"></progress>
-
-                </div>
-                <div className="card bg-white gap-4 m-4 rounded-box p-4">
-                  <div className="flex-row flex justify-between items-center">
-                    <h2> Total <br /> Contributions</h2>
-                    <h2 className="text-xl text-red-500">9,500</h2>
-                  </div>
-                  <progress className="progress w-56" value="40" max="100"></progress>
-
-                </div>
-                <div className="card bg-white gap-4 m-4 rounded-box p-4">
-                  <div className="flex-row flex justify-between items-center">
-                    <h2> Total <br /> Contributions</h2>
-                    <h2 className="text-xl text-red-500">9,500</h2>
-                  </div>
-                  <progress className="progress w-56" value="40" max="100"></progress>
-
-                </div>
-                <div className="card bg-white gap-4 m-4 rounded-box p-4">
-                  <div className="flex-row flex justify-between items-center">
-                    <h2> Total <br /> Contributions</h2>
-                    <h2 className="text-xl text-red-500">9,500</h2>
-                  </div>
-                  <progress className="progress bg-none progress-error w-56" value="40" max="100"></progress>
-
-                </div>
-
+              <div className="grid card p-2 m-4 mt-60 absolute top-0">
+                <Countdown />
               </div>
             </div>
 
-            <div className="grid card p-2 m-4 mt-10">
+            <div className="flex gap-5 m-8 p-2">
+              <button className="bg-white text-red-600 text-2xl p-2 border-4 border-red-600" onClick={() => withdrawETH()}>Withdraw Funds</button>
+              <button className=" bg-white text-red-600 text-2xl p-2 border-4 border-red-600" onClick={() => stakeETH()}>Make Payment</button>
+
+            </div>
+
+            <div className="grid card p-2 m-4 mt-20">
               <div className="gap-3 text-gray-300 flex flex-row">
 
 
@@ -174,7 +143,7 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
                   <h2 className="text-center">Contributions</h2>
 
                   <div className="flex gap-12">
-                    <div className="radial-progress text-primary-content border-primary" style={{ "--value": 70, "--size": "12rem", "--thickness": "2rem" }}>70%</div>
+                    <div className="radial-progress text-red-600 text-4xl" style={{ "--value": stakerContractBalance && threshold ? (stakerContractBalance / formatEther(threshold) * 100) : 0, "--size": "12rem", "--thickness": "2rem" }}>{stakerContractBalance && threshold ? (stakerContractBalance / formatEther(threshold) * 100) : 0}%</div>
 
 
 
@@ -184,11 +153,12 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
                 <div className="card bg-white m-4 rounded-box flex flex-col justify-center p-4 w-2/4">
                   <h2 className="text-center">Monthly Goal</h2>
 
-                  <h2 className="text-9xl text-center">{<ETHToPrice value={threshold ? formatEther(threshold) : undefined} />}</h2>
+                  <h2 className="text-9xl text-center">{threshold && formatEther(threshold)} {configuredNetwork.nativeCurrency.symbol}</h2>
                 </div>
-                <div className="card bg-white m-4 rounded-box p-4 w-1/4 flex justify-center" style={{ backgroundImage: 'url(/images/credit-score.png)' }}>
+                <div className="card bg-white m-4 rounded-box p-4 w-1/4 flex justify-start">
                   <div>
-                    <h1 className="text-9xl text-center">45</h1>
+                    <h2 className="text-center mb-10">My Savings</h2>
+                    <h1 className="text-6xl text-center">{myStake ? formatEther(myStake) : 0} {configuredNetwork.nativeCurrency.symbol}</h1>
                   </div>
 
 
@@ -196,13 +166,9 @@ export const StakeContractInteraction = ({ address, activeTab, handleTabClick }:
                 </div>
               </div>
             </div>
-            <div>
-              <div className="flex flex-col items-center justify-center w-1/2">
-                <p className="block text-6xl mt-0 mb-1 font-semibold">Time Left</p>
-                <Countdown />
-              </div>
-            </div>
+            ]
             <div className="m-4 p-2">
+              <SearchBar />
               <Stakings />
             </div>
 

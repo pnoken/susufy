@@ -9,11 +9,15 @@ contract Staker {
 
 	//mapping to track balances
 	mapping(address => uint256) public balances;
+	mapping(address => uint256) public savingsTimestamps;
 
 	uint256 public constant threshold = 1 ether;
 	bool public openForWithdraw;
 
 	uint256 public deadline = block.timestamp + 72 hours;
+	// Constants for credit score calculation
+	uint256 public constant SAVINGS_INTERVAL = 1 days;
+	uint256 public constant MAX_CREDIT_SCORE = 100;
 
 	//Events
 	event Stake(address indexed staker, uint256 amount);
@@ -67,8 +71,7 @@ contract Staker {
 	}
 
 	//function to withdraw funds
-	function withdraw(uint256 amount) external notCompleted {
-		require(openForWithdraw, "Withdraw is not yet enabled");
+	function withdraw(uint256 amount) external {
 		require(amount > 0, "Amount must be greater than 0");
 		require(balances[msg.sender] >= amount, "Insufficient balance");
 
