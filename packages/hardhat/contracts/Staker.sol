@@ -66,6 +66,16 @@ contract Staker {
 		return deadline - block.timestamp;
 	}
 
+	//function to withdraw funds
+	function withdraw(uint256 amount) external notCompleted {
+		require(openForWithdraw, "Withdraw is not yet enabled");
+		require(amount > 0, "Amount must be greater than 0");
+		require(balances[msg.sender] >= amount, "Insufficient balance");
+
+		balances[msg.sender] -= amount;
+		payable(msg.sender).transfer(amount);
+	}
+
 	// Add the `receive()` special function that receives eth and calls stake()
 	receive() external payable {
 		stake();
