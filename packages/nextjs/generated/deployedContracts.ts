@@ -221,7 +221,7 @@ const contracts = {
       name: "sepolia",
       contracts: {
         ExampleExternalContract: {
-          address: "0xf176792D75D328459F96863aCa339b1d9ec269BF",
+          address: "0xDb47E1F4Cf10690D8f2DB0EFbd9f0f7a4A247Fc0",
           abi: [
             {
               inputs: [],
@@ -246,7 +246,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0xdBfcdF678Bda1adb2961b3066fDe5C7a238ccedb",
+          address: "0x79A43B5c00D63152881dEc462628DdfA658EA64F",
           abi: [
             {
               inputs: [
@@ -387,6 +387,19 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              name: "withdraw",
+              outputs: [],
+              stateMutability: "nonpayable",
               type: "function",
             },
             {
